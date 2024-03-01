@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Ticket Management System</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin:20px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .ticket-container {
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #e30c0c;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin-right: 100px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border:None;
+            cursor:pointer;
+        }
+
+        button:hover {
+            background-color: #09e142;
+        }
+    </style>
+    <script>
+        var passengerList = []; // Sample passenger list for demonstration purposes
+
+        function bookTicket() {
+            var nameInput = document.getElementById("name");
+            var seatInput = document.getElementById("seat");
+            var mobileInput = document.getElementById("mobile");
+
+            var name = nameInput.value;
+            var seat = seatInput.value;
+            var mobile = mobileInput.value;
+
+            if (name.trim() === "" || seat.trim() === "" || mobile.trim() === "") {
+                alert("Please enter valid passenger details.");
+                return;
+            }
+
+            
+            var passenger = {
+                name: name,
+                seat: seat,
+                mobile: mobile
+            };
+
+            passengerList.push(passenger);
+
+            alert("Ticket booked for " + name);
+            nameInput.value = "";
+            seatInput.value = "";
+            mobileInput.value = "";
+        }
+
+        function displayPassengerInformation() {
+          
+            var passengerString = "Passenger List:\n";
+            for (var i = 0; i < passengerList.length; i++) {
+                var passenger = passengerList[i];
+                passengerString += "- Name: " + passenger.name + ", Seat: " + passenger.seat + ", Mobile: " + passenger.mobile + "\n";
+            }
+            alert(passengerString);
+        }
+
+        function deletePassenger() {
+            if (passengerList.length === 0) {
+                alert("Passenger list is empty.");
+                return;
+            }
+
+           
+
+            var deletedPassenger = passengerList.shift();
+            alert("Passenger " + deletedPassenger.name + " has been deleted.");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Bus Ticket Management System</h1>
+        <div class="ticket-container">
+            <h2>Book Ticket</h2>
+            <label for="name">Passenger Name:</label>
+            <input type="text" id="name" placeholder="Enter passenger name"><br><br>
+            <label for="seat">Seat Number:</label>
+            <input type="text" id="seat" placeholder="Enter seat number"><br><br>
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" placeholder="Enter mobile number"><br><br>
+            <button onclick="bookTicket()">Book Ticket</button>
+        </div>
+        <div class="ticket-container">
+            <h2>Ticket Management</h2>
+            <button onclick="displayPassengerInformation()">Display Passenger Information</button>
+            <button onclick="deletePassenger()">Delete Passenger</button>
+        </div>
+        <h4>All right reseved by team 2</h4>
+    </div>
+</body>
+</html>
